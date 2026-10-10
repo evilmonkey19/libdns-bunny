@@ -360,6 +360,7 @@ const (
 	bunnyTypeNS       = 12
 	bunnyTypeSVCB     = 13
 	bunnyTypeHTTPS    = 14
+	bunnyTypeTLSA     = 15
 )
 
 // Converts the Bunny.net record type to the libdns record type.
@@ -395,6 +396,8 @@ func fromBunnyType(t int) (string, error) {
 		return "SVCB", nil
 	case bunnyTypeHTTPS:
 		return "HTTPS", nil
+	case bunnyTypeTLSA:
+		return "TLSA", nil
 	default:
 		return "", fmt.Errorf("unknown record type ID: %d", t)
 	}
@@ -433,6 +436,8 @@ func toBunnyType(t string) (int, error) {
 		return bunnyTypeSVCB, nil
 	case "HTTPS":
 		return bunnyTypeHTTPS, nil
+	case "TLSA":
+		return bunnyTypeTLSA, nil
 	default:
 		return -1, fmt.Errorf("unknown record type: %s", t)
 	}
